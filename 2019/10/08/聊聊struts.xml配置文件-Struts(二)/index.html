@@ -17,6 +17,54 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">package的属性</span></span><br><span class="line"><span class="comment">name:package名称，作为其他包引用本包的标识，必填属性</span></span><br><span class="line"><span class="comment">extends:继承的父package名称，可选属性。通常设置为struts-default，继承struts-default.xml，它里面定义了许多跳转类型、拦截器等一些常用的东西</span></span><br><span class="line"><span class="comment">abstract:设置package的属性为抽象的，抽象的package不能定义Action，可选属性。</span></span><br><span class="line"><span class="comment">namespace:可选属性。浏览器地址是根据namespace/action名称去访问的action其中namespace可以是虚路径</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"MyStruts"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span> <span class="attr">namespace</span>=<span class="string">"/"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">package</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>&lt;package&gt;子元素列表<br>|子元素|功能|<br>|–|–|<br>|default-action-ref|配置默认的Action|<br>|default-class-ref|配置默认class|<br>|default-interceptor-ref|配置默认拦截器，对package范围内的所有Action有效|<br>|global-results|配置全局结果集，对package范围内的所有Action有效|<br>|global-exception-mapping|配置全局异常映射，对package范围内的所有Action有效|<br>|result-types|配置定义返回结果类型|<br>|interceptors|配置拦截器信息|<br>|action|配置Action信息|</p>
+<table>
+<thead>
+<tr>
+<th>type可取值</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>dispatcher</td>
+<td>转发，默认结果类型，对应视图为JSP界面</td>
+</tr>
+<tr>
+<td>chain</td>
+<td>将Action和另一个Action链接起来</td>
+</tr>
+<tr>
+<td>freemarker</td>
+<td>返回结果的对应视图为FreeMarker模板</td>
+</tr>
+<tr>
+<td>HttpHeaderResult</td>
+<td>返回一个已配置好的HTTP头信息响应</td>
+</tr>
+<tr>
+<td>redirect</td>
+<td>将用户重定向到一个配置好的URL</td>
+</tr>
+<tr>
+<td>redirectAction</td>
+<td>将用户重定向到一个已定义好的Action</td>
+</tr>
+<tr>
+<td>stream</td>
+<td>将原数据作为流传递会浏览器，一般用于下载</td>
+</tr>
+<tr>
+<td>velocity</td>
+<td>返回结果的对应视图为Velocity模板</td>
+</tr>
+<tr>
+<td>xslt</td>
+<td>呈现XML到浏览器，该XML可以通过XSL模板进行转换</td>
+</tr>
+<tr>
+<td>plaintext</td>
+<td>返回普通文本内容</td>
+</tr>
+</tbody></table>
 <h3 id="lt-default-action-ref-gt"><a href="#lt-default-action-ref-gt" class="headerlink" title="&lt;default-action-ref&gt;"></a>&lt;default-action-ref&gt;</h3><p>&emsp;&emsp;&lt;default-action-ref&gt;元素用于配置默认的Action，当一个Action请求在配置文件中找不到时，就会执行这个默认的Action，该元素只有一个name属性。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">default-action-ref</span> <span class="attr">name</span>=<span class="string">"Error"</span>&gt;</span><span class="tag">&lt;/<span class="name">default-action-ref</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
