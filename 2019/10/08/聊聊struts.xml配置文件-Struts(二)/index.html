@@ -1,0 +1,167 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="谢振瑜的个人技术博客"><meta name="keywords" content="谢以轩,谢振瑜,技术博客,个人技术博客,java经验分享"><link rel="stylesheet" type="text/css" href="//fonts.loli.net/css?family=Source+Code+Pro"><link rel="stylesheet" type="text/css" href="/css/style.css?v=2.0.4"><link rel="stylesheet" type="text/css" href="/css/highlight.css?v=2.0.4"><link rel="Shortcut Icon" href="/favicon.ico"><link rel="bookmark" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><title>傻瓜式使用Struts-Struts(一) | 谢以轩</title></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">傻瓜式使用Struts-Struts(一)</h1><a id="logo" href="/.">谢以轩</a><p class="description">季节的流年里，时光如水而过。春风送暖，染一季芳菲，催一树花开，最美不过人间四月天。鸟语花香的清晨，推开窗子，看桃花灼灼，花瓣纷扬，让心灵浸染春色，那淡淡的清新沉醉了我的一帘幽梦。</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div><div id="search-form"><div id="result-mask" class="hide"></div><label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label><div id="result-wrap" class="hide"><div id="search-result"></div></div><div class="hide"><template id="search-tpl"><div class="item"><a href="/{path}" title="{title}"><div class="title">{title}</div><div class="time">{date}</div><div class="tags">{tags}</div></a></div></template></div></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">傻瓜式使用Struts-Struts(一)</h1><div class="post-meta"><a href="/2019/10/08/聊聊struts.xml配置文件-Struts(二)/#comments" class="comment-count"><i id="changyan_count_unit" data-xid="2019/10/08/聊聊struts.xml配置文件-Struts(二)/"></i>留言,<i id="changyan_parti_unit" data-xid="2019/10/08/聊聊struts.xml配置文件-Struts(二)/"></i>参与</a><p><span class="date">Oct 08, 2019</span><span><a href="/categories/SSH/" class="category">SSH</a></span><span><i id="busuanzi_container_page_pv"><i id="busuanzi_value_page_pv"></i><i>点击</i></i></span></p></div><div class="post-content"><p>&emsp;&emsp;上一篇写了一下struts怎么快速上手使用，下面是struts的配置文件struts.xml中一些配置的解释(●’◡’●)。</p>
+<hr>
+<p>&emsp;&emsp;struts.xml是整个程序的工作流程的依据，该文件的根元素是&lt;struts&gt;，其中可以包含4个子元素，分别是：&lt;include&gt;、&lt;constant&gt;、&lt;bean&gt;、&lt;package&gt;</p>
+<h2 id="lt-include-gt-元素"><a href="#lt-include-gt-元素" class="headerlink" title="&lt;include&gt;元素"></a>&lt;include&gt;元素</h2><p>&emsp;&emsp;由于用struts开发一个大型的项目时，struts中的配置信息会越来越多，这样就会使配置文件的可读性和维护性变差，但使用了&lt;include&gt;就会解决这个问题，我们可以按照不同的功能或者模块将配置文件分割成多个配置文件。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">struts</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">include</span> <span class="attr">file</span>=<span class="string">"login.xml"</span>&gt;</span><span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">include</span> <span class="attr">file</span>=<span class="string">"register.xml"</span>&gt;</span><span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">struts</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="lt-constant-gt-元素"><a href="#lt-constant-gt-元素" class="headerlink" title="&lt;constant&gt;元素"></a>&lt;constant&gt;元素</h2><p>&emsp;&emsp;&lt;constant&gt;元素用于配置一些常量信息，这些常量用于控制struts2的某些特性，相当于当他运行时，给你准备哪些功能。由于&lt;constant&gt;元素的常量值过多，我只列一些常用的，以下例子是&lt;constant&gt;元素使用的常用设置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">struts</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 匹配所有以".action"为后缀的请求都由struts处理，其中action可变</span></span><br><span class="line"><span class="comment">	如果需要匹配多个后缀都由struts处理，则使用英文","号分隔，例如value="do,action"</span></span><br><span class="line"><span class="comment">	如果不写这一句，则会默认映射Action名字</span></span><br><span class="line"><span class="comment">	 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.action.extension"</span> <span class="attr">value</span>=<span class="string">"action"</span> /&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 是否启用开发者模式，在开发者模式下可打印出更加详细的报错信息 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.devMode"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 当struts配置文件改动后，是否重新加载，默认不写是false --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.configuration.xml.reload"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 设置浏览器是否缓存静态内容，默认不写为true缓存，在开发环境下最好关闭，可以提高开发效率 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.serve.static.browserCache"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 设置请求参数的编码方式，实际上相当于相当调用HttpServletRequest中的setCharacterEncoding方法 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.i18n.encoding"</span> <span class="attr">value</span>=<span class="string">"utf-8"</span> /&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 每次HTTP请求系统都重新加载资源文件 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.i18n.reload"</span> <span class="attr">value</span>=<span class="string">"false"</span> /&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 文件上传的最大值，单位为字节 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.multipart.maxSize"</span> <span class="attr">value</span>=<span class="string">"1024"</span> /&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 让Struts支持动态方法调用 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.enable.DynamicMethodInvocation"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 在URL中的Action段中是否支持斜线 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.enable.SlashesInActionNames"</span> <span class="attr">value</span>=<span class="string">"false"</span> /&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 标签中是否支持ognl表达式 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.tag.altSyntax"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">struts</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="lt-bean-gt-元素"><a href="#lt-bean-gt-元素" class="headerlink" title="&lt;bean&gt;元素"></a>&lt;bean&gt;元素</h2><p>&emsp;&emsp;struts2是一个可扩展的框架，核心组件都是可以配置的，当我们需要扩展或替换struts2的核心组件时，只需要提供自己的组件实现类，并部署到struts2的容器中即可。<br>&emsp;&emsp;例子：使用一个自定义的ObjectFactory替换struts2内置的ObjectFactory：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"myFactory"</span> <span class="attr">type</span>=<span class="string">"com.opensymphony.xwork2.ObjectFactory"</span> <span class="attr">class</span>=<span class="string">"xiezhenyu.ObjectFactory"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="lt-package-gt-元素"><a href="#lt-package-gt-元素" class="headerlink" title="&lt;package&gt;元素"></a>&lt;package&gt;元素</h2><p>&emsp;&emsp;&lt;package&gt;元素提供了将多个Action组织为一个模块的方式，package的name在整个struts配置文件中必须是唯一的，并且一个package可以扩展自另一个package。此时改package会在本身配置的基础上加入扩展package的配置，但要注意父package必须在子package前配置。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">package的属性</span></span><br><span class="line"><span class="comment">name:package名称，作为其他包引用本包的标识，必填属性</span></span><br><span class="line"><span class="comment">extends:继承的父package名称，可选属性。通常设置为struts-default，继承struts-default.xml，它里面定义了许多跳转类型、拦截器等一些常用的东西</span></span><br><span class="line"><span class="comment">abstract:设置package的属性为抽象的，抽象的package不能定义Action，可选属性。</span></span><br><span class="line"><span class="comment">namespace:可选属性。浏览器地址是根据namespace/action名称去访问的action其中namespace可以是虚路径</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"MyStruts"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span> <span class="attr">namespace</span>=<span class="string">"/"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">package</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>&lt;package&gt;子元素列表<br>|子元素|功能|<br>|–|–|<br>|default-action-ref|配置默认的Action|<br>|default-class-ref|配置默认class|<br>|default-interceptor-ref|配置默认拦截器，对package范围内的所有Action有效|<br>|global-results|配置全局结果集，对package范围内的所有Action有效|<br>|global-exception-mapping|配置全局异常映射，对package范围内的所有Action有效|<br>|result-types|配置定义返回结果类型|<br>|interceptors|配置拦截器信息|<br>|action|配置Action信息|</p>
+<h3 id="lt-default-action-ref-gt"><a href="#lt-default-action-ref-gt" class="headerlink" title="&lt;default-action-ref&gt;"></a>&lt;default-action-ref&gt;</h3><p>&emsp;&emsp;&lt;default-action-ref&gt;元素用于配置默认的Action，当一个Action请求在配置文件中找不到时，就会执行这个默认的Action，该元素只有一个name属性。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">default-action-ref</span> <span class="attr">name</span>=<span class="string">"Error"</span>&gt;</span><span class="tag">&lt;/<span class="name">default-action-ref</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="lt-default-class-ref-gt"><a href="#lt-default-class-ref-gt" class="headerlink" title="&lt;default-class-ref&gt;"></a>&lt;default-class-ref&gt;</h3><p>&emsp;&emsp;&lt;default-class-ref&gt;元素用户配置默认的类，在配置Action时，如果没有指定具体的class属性，系统就会使用&lt;default-class-ref&gt;元素中的配置。&lt;default-class-ref&gt;只有一个class属性。当使用&lt;default-class-ref&gt;元素指定了默认类后，Struts原来默认的类会被覆盖，而且默认的Action类必须包含execute()方法。</p>
+<h3 id="lt-default-interceptor-ref-gt"><a href="#lt-default-interceptor-ref-gt" class="headerlink" title="&lt;default-interceptor-ref&gt;"></a>&lt;default-interceptor-ref&gt;</h3><p>&emsp;&emsp;&lt;default-interceptor-ref&gt;元素用于配置默认类拦截器，如果package继承了“struts-default”，那么也会继承父类package的默认拦截器。</p>
+<h3 id="lt-global-result-gt"><a href="#lt-global-result-gt" class="headerlink" title="&lt;global-result&gt;"></a>&lt;global-result&gt;</h3><p>&emsp;&emsp;&lt;global-result&gt;元素用于配置package范围内的全局结果集。他的子元素是&lt;result&gt;。当一个package中多个Action都使用了一个或多个结果的时候，则将其配置在全局结果集中，增强代码的可读性和维护性。例如下面这个案列：当每个Action都返回了error的时候，全都使用这个全局结果去执行。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">global-result</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"error"</span>&gt;</span>/error.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">global-result</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="lt-global-exception-mapping-gt"><a href="#lt-global-exception-mapping-gt" class="headerlink" title="&lt;global-exception-mapping&gt;"></a>&lt;global-exception-mapping&gt;</h3><p>&emsp;&emsp;&lt;global-exception-mapping&gt;元素用于配置全局异常映射，如果&lt;action&gt;元素内配置了自己的异常映射，则Action内的优先级高于此配置。他的子元素是&lt;exception-mapping&gt;。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">global-exception-mapping</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">exception-mapping</span> <span class="attr">result</span>=<span class="string">"error"</span> <span class="attr">exception</span>=<span class="string">"异常类型"</span>&gt;</span><span class="tag">&lt;/<span class="name">exception-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">global-exception-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="lt-result-type-gt"><a href="#lt-result-type-gt" class="headerlink" title="&lt;result-type&gt;"></a>&lt;result-type&gt;</h3><p>&emsp;&emsp;&lt;result-type&gt;元素用于配置自定义返回结果类型，该元素基本不用。</p>
+<h3 id="lt-interceptors-gt"><a href="#lt-interceptors-gt" class="headerlink" title="&lt;interceptors&gt;"></a>&lt;interceptors&gt;</h3><p>&emsp;&emsp;&lt;interceptors&gt;元素用于配置拦截器的拦截器栈，他有两个子元素：&lt;interceptor&gt;和&lt;interceptor-stack&gt;，分别用来定义拦截器和拦截器栈。</p>
+<h3 id="lt-action-gt"><a href="#lt-action-gt" class="headerlink" title="&lt;action&gt;"></a>&lt;action&gt;</h3><p>&lt;action&gt;元素是比较重要的一个元素，也是我们开发中使用最多的一个元素。它有4个属性：</p>
+<ul>
+<li><p>name：必选属性，Action的名字。</p>
+</li>
+<li><p>class：可选属性，Action处理类的名字。</p>
+</li>
+<li><p>method：可选属性，指定Action中的方法。如果没有配置该属性，所有请求都会被转发到execute()方法去处理。如果有多个请求需要分别交给不同的方法去处理，就可以使用该属性来指明。</p>
+</li>
+<li><p>converter：可选属性，指定Action使用的类型转换器。</p>
+<p>&emsp;&emsp;method属性除了可以填固定的函数名外，还可以使用通配符的方法实现动态方法调用，使用它的前提是必须要配置&lt;constant&gt;元素和&lt;global-allowed-methods&gt;，使其能实现动态方法调用和适配所有的方法。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">struts</span>&gt;</span></span><br><span class="line">	 <span class="comment">&lt;!-- 让Struts支持动态方法调用 --&gt;</span></span><br><span class="line">	 <span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.enable.DynamicMethodInvocation"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line"> 	<span class="tag">&lt;<span class="name">package</span>  <span class="attr">name</span>=<span class="string">"Struts"</span> <span class="attr">namespace</span>=<span class="string">"/"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span>&gt;</span></span><br><span class="line"> 		<span class="comment">&lt;!-- 适配所有的通配符方法 --&gt;</span></span><br><span class="line"> 		<span class="tag">&lt;<span class="name">global-allowed-methods</span>&gt;</span>regex:.*<span class="tag">&lt;/<span class="name">global-allowed-methods</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"*User"</span> <span class="attr">class</span>=<span class="string">"xiezhenyu.UserAction"</span> <span class="attr">method</span>=<span class="string">"&#123;1&#125;User"</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"error"</span>&gt;</span>/error.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"success"</span>&gt;</span>/success.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">package</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">struts</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;如上代码所示，name属性值中的”*“就是通配符，表示所有以User结尾的亲求都会有这个Action处理；method属性值中的“{1}”是表达式，表示name属性中”*“的值，比如请求为loginUser，那么将传递给method属性，这是会调用Action中loginUser()方法。</p>
+<p>&lt;action&gt;中还有以下几个子元素</p>
+</li>
+<li><p>&lt;interceptor-ref&gt;：用于配置拦截器</p>
+</li>
+<li><p>&lt;exception-mapping&gt;：用于配置异常映射</p>
+</li>
+<li><p>&lt;result&gt;：用于配置Action的结果映射，除了常规的结果映射外，也可以像method属性值一样使用表达式，实行动态结果。&lt;result&gt;有两个属性，name、type。name为Action类在处理完成返回的都是字符串类型的结果，这个结果作为逻辑视图存在，对应&lt;result&gt;元素的name属性值，然后找到与之对应的视图资源。type为指定结果的类型，其取值如下表所示。（我们只需要记住dispatcher、redirect和chain三个常用的即可，其它的略作了解）</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>type可取值</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>dispatcher</td>
+<td>转发，默认结果类型，对应视图为JSP界面</td>
+</tr>
+<tr>
+<td>chain</td>
+<td>将Action和另一个Action链接起来</td>
+</tr>
+<tr>
+<td>freemarker</td>
+<td>返回结果的对应视图为FreeMarker模板</td>
+</tr>
+<tr>
+<td>HttpHeaderResult</td>
+<td>返回一个已配置好的HTTP头信息响应</td>
+</tr>
+<tr>
+<td>redirect</td>
+<td>将用户重定向到一个配置好的URL</td>
+</tr>
+<tr>
+<td>redirectAction</td>
+<td>将用户重定向到一个已定义好的Action</td>
+</tr>
+<tr>
+<td>stream</td>
+<td>将原数据作为流传递会浏览器，一般用于下载</td>
+</tr>
+<tr>
+<td>velocity</td>
+<td>返回结果的对应视图为Velocity模板</td>
+</tr>
+<tr>
+<td>xslt</td>
+<td>呈现XML到浏览器，该XML可以通过XSL模板进行转换</td>
+</tr>
+<tr>
+<td>plaintext</td>
+<td>返回普通文本内容</td>
+</tr>
+</tbody></table>
+<hr>
+<p>以上就是struts2配置文件的大部分内容。</p>
+</div><div class="post-copyright"><blockquote><p>原文作者: 谢振瑜</p><p>原文链接: <a href="https://Xiezhenyu98.github.io/2019/10/08/聊聊struts.xml配置文件-Struts(二)/">https://Xiezhenyu98.github.io/2019/10/08/聊聊struts.xml配置文件-Struts(二)/</a></p><p>版权声明: 转载请注明出处(必须保留作者署名及链接)</p></blockquote></div><div class="tags"><a href="/tags/struts/">struts</a></div><div class="post-share"><div class="social-share"><span>分享到:</span></div></div><div class="post-nav"><a href="/2019/10/07/傻瓜式使用Struts-Struts(一)/" class="next">傻瓜式使用Struts-Struts(一)</a></div><div id="comments"><div id="SOHUCS" sid="2019/10/08/聊聊struts.xml配置文件-Struts(二)/"></div></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="search-pla"></div><div id="toc" class="widget"><div class="widget-title"><i class="fa fa-fei">文章目录</i></div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#lt-include-gt-元素"><span class="toc-text">&lt;include&gt;元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lt-constant-gt-元素"><span class="toc-text">&lt;constant&gt;元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lt-bean-gt-元素"><span class="toc-text">&lt;bean&gt;元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lt-package-gt-元素"><span class="toc-text">&lt;package&gt;元素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lt-default-action-ref-gt"><span class="toc-text">&lt;default-action-ref&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lt-default-class-ref-gt"><span class="toc-text">&lt;default-class-ref&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lt-default-interceptor-ref-gt"><span class="toc-text">&lt;default-interceptor-ref&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lt-global-result-gt"><span class="toc-text">&lt;global-result&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lt-global-exception-mapping-gt"><span class="toc-text">&lt;global-exception-mapping&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lt-result-type-gt"><span class="toc-text">&lt;result-type&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lt-interceptors-gt"><span class="toc-text">&lt;interceptors&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lt-action-gt"><span class="toc-text">&lt;action&gt;</span></a></li></ol></li></ol></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/10/08/聊聊struts.xml配置文件-Struts(二)/">傻瓜式使用Struts-Struts(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/07/傻瓜式使用Struts-Struts(一)/">傻瓜式使用Struts-Struts(一)</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-gui"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/SSH/">SSH</a><span class="category-list-count">2</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> 标签</i></div><div class="tagcloud"><a href="/tags/struts/" style="font-size: 15px;">struts</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-archive"> 归档</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-you"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div></div><a id="totop" href="#top"></a><div id="footer"><div class="footer-info"><p><a href="/baidusitemap.xml">网站地图</a> |  <a href="/atom.xml">订阅本站</a> |  <a href="/about/">联系博主</a></p><p>本站总访问量：<i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>次，本站总访客数:<i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i>人</p><p><span> Copyright &copy;<a href="/." rel="nofollow">谢振瑜.</a></span><span> Theme by<a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> BlueLake.</a></span><span> Count by<a href="http://busuanzi.ibruce.info/"> busuanzi.</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span></p></div></div></div><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><script type="text/javascript" src="/js/search.json.js?v=2.0.4"></script><script type="text/javascript" src="/js/toctotop.js?v=2.0.4" async></script><link rel="stylesheet" type="text/css" href="/share/css/share.css"><script type="text/javascript" src="/share/js/social-share.js" charset="utf-8"></script><script type="text/javascript" src="/share/js/qrcode.js" charset="utf-8"></script><script>window._config = { showScore: true };
+(function(){ 
+  var appid = 'cyutnY15j'; 
+  var conf = '674d5a14957e99302457e5a6e5348b70'; 
+  var width = window.innerWidth || document.documentElement.clientWidth; 
+  var nodes =document.getElementsByTagName("head")[0]||document.head||document.documentElement;
+  if (/(Android|iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent) && width < 750) {  
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
+  }
+  else { 
+    var loadJs=function(d,a){
+      var b=document.createElement("script");b.setAttribute("type","text/javascript");
+      b.setAttribute("charset","UTF-8");
+      b.setAttribute("src",d);
+      if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}
+      nodes.appendChild(b)
+    };
+    loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); 
+  } 
+  var loadCss = function(cssString){  
+    var style=document.createElement("style");  
+    style.setAttribute("type", "text/css");  
+    if(style.styleSheet){// IE  
+        style.styleSheet.cssText = cssString;  
+    } else {// w3c  
+        var cssText = document.createTextNode(cssString);  
+        style.appendChild(cssText);  
+    }
+    nodes.appendChild(style);
+  }
+  //- window.onload=function(){
+  //-   if(window.outerWidth<=775){
+  //-     loadCss('.module-hot-topic,.module-cmt-float-bar{display:none!important}#SOHUCS #SOHU_MAIN .module-cmt-box .post-wrap-w .wrap-action-w .cbox-prompt-w span.prompt-empty-w,#SOHUCS #SOHU_MAIN .module-cmt-float-bar .wrap-cont-w .cont-form-w .form-text-w span.text-null,#SOHUCS #SOHU_MAIN .module-cmt-float-bar .wrap-cont-w .cont-minwidth-w div.cont-comment-w a.comment-link-w,#SOHUCS #SOHU_MAIN .module-cmt-float-bar .wrap-cont-w .cont-minwidth-w div.cont-comment-w span.comment-text-w,#SOHUCS #SOHU_MAIN .module-cmt-footer .section-service-w div.service-wrap-w a:hover,#SOHUCS #SOHU_MAIN .module-cmt-header .section-cbox-w .block-head-w div.header-login,#SOHUCS #SOHU_MAIN .module-cmt-header .section-title-w .title-user-w .user-wrap-w span.wrap-name-w,#SOHUCS #SOHU_MAIN .module-cmt-list .action-click-gw span.click-disable-eg a em.icon-name-bg,#SOHUCS #SOHU_MAIN .module-cmt-list .block-title-gw ul li div.title-name-gw,#SOHUCS #SOHU_MAIN .module-cmt-list .cmt-list-type .cmt-list-number .comment-number span.cy-number,#SOHUCS #SOHU_MAIN .module-cmt-list .cmt-list-type .cmt-list-number span.comment-number,#SOHUCS #SOHU_MAIN .module-cmt-list .cmt-list-type .type-lists li.active,#SOHUCS #SOHU_MAIN .module-cmt-list .msg-wrap-gw .wrap-action-gw .action-click-gw span a:hover,#SOHUCS #SOHU_MAIN .module-cmt-list .picture-box-gw div.box-action-gw a:hover,#SOHUCS #SOHU_MAIN .module-cmt-list .wrap-action-gw .action-click-gw span a:hover em.icon-name-bg,#SOHUCS #SOHU_MAIN .module-cmt-list .wrap-user-gw span.user-name-gw a{color:#40759b!important}#SOHUCS #SOHU_MAIN .module-cmt-box .post-wrap-w .post-wrap-border-t div.post-wrap-border-t-r,#SOHUCS #SOHU_MAIN .module-cmt-box .post-wrap-w div.post-wrap-border-l,#SOHUCS #SOHU_MAIN .module-cmt-box .post-wrap-w div.post-wrap-border-r{display:none!important}#SOHUCS #SOHU_MAIN .module-cmt-box .post-wrap-w .post-wrap-border-t div.post-wrap-border-t-l{background:#FFF!important;top:-2px!important}#SOHUCS #SOHU_MAIN .module-cmt-box .post-wrap-w .wrap-action-w .action-function-w .uploading-wrapper-dw div.wrapper-image-dw,#SOHUCS #SOHU_MAIN .module-cmt-box .post-wrap-w div.post-wrap-main,#SOHUCS #SOHU_MAIN .module-cmt-float-bar .wrap-cont-w .cont-form-w div.form-text-w,#SOHUCS #SOHU_MAIN .module-cmt-header .section-cbox-w .block-head-w div.header-login,#SOHUCS #SOHU_MAIN .module-cmt-list .module-cmt-box .post-wrap-w div.post-wrap-main{border:1px solid #e6e6e6!important;border-radius:20px 20px 20px 20px;margin:0!important}#SOHUCS #SOHU_MAIN .module-cmt-box .post-wrap-w .wrap-action-w .action-issue-w .issue-btn-w a .btn-fw{width:130px!important;height:34px!important;line-height:33px!important;font-size:17px!important;background:#5483b1!important;border-radius:20px!important;color:#FFF!important;-webkit-box-shadow:0 -1px 4px #5483b1 inset;box-shadow:0 -1px 10px #5483b1 inset}#SOHUCS #SOHU_MAIN .module-cmt-box .post-wrap-w .wrap-action-w .action-issue-w .issue-btn-w a .btn-fw:before{content:"发表评论"}#SOHUCS #SOHU_MAIN .module-cmt-box .post-wrap-w .wrap-action-w .action-issue-w .issue-btn-w a:hover .btn-fw{color:#40759b!important;background:#FFF!important}#SOHUCS #SOHU_MAIN .module-cmt-list .cmt-list-type .type-lists li{background:none!important;border-bottom:1px solid #e6e6e6}#SOHUCS #SOHU_MAIN .module-cmt-list .cmt-list-type .type-lists li.active{border:1px solid #e6e6e6;border-radius:10px 10px 0 0;border-bottom:none}#SOHUCS #SOHU_MAIN .module-cmt-list .block-title-gw ul li .title-name-gw div.title-name-gw-tag{background:#5483b1!important;border-radius:3px}#SOHUCS #SOHU_MAIN .module-cmt-list .cmt-list-type div.cmt-list-border{background-color:#e6e6e6!important}#SOHUCS #SOHU_MAIN .module-cmt-notice ul.nt-list li.nt-item{border:1px solid #e6e6e6!important}#SOHUCS #SOHU_MAIN .module-cmt-notice ul.nt-list li.nt-item .nt-logo{text-align:center;line-height:40px;border-radius:50%!important;background:#e6e6e6!important}#SOHUCS #SOHU_MAIN .module-cmt-notice ul.nt-list li.nt-item .nt-logo:before{content:"畅";font-size:22px;color:#FFF}#SOHUCS #SOHU_MAIN .module-cmt-notice ul.nt-list li.nt-item a.nt-text,#SOHUCS #SOHU_MAIN .module-cmt-notice ul.nt-list li.nt-item a.nt-text i{color:#5483b1!important}#SOHUCS #SOHU_MAIN .module-cmt-header .section-title-w .title-user-w .user-wrap-w{background:#FFF!important}@media screen and (min-width:900px){#SOHUCS #SOHU_MAIN .module-mobile-cmt-list .list-wrapper-wap .list-container-wap .list-item-wap .list-content-wrapper-wap .cmt-list-image-container .cmt-list-image{max-width: 100%;}}');
+  //-   }
+  //- };
+})();
+function removeElement(_element){
+     var _parentElement = _element.parentNode;
+     if(_parentElement){
+            _parentElement.removeChild(_element);
+     }
+}
+var removeAD = document.createElement("div");
+removeAD.id = 'removeAD';
+var adInterval1 = setInterval(function() {
+  if(document.querySelector("#feedAv")){
+    document.querySelector("[node-type=cmt-list]").appendChild(removeAD);
+    document.querySelector("#removeAD").appendChild(document.querySelector("#feedAv"));
+    //- removeElement(document.querySelectorAll("#feedAv")[0]);
+    var feedAv = document.querySelector("#feedAv").children;
+    for( item of feedAv){
+      item.style.display = 'none'
+    }
+    document.querySelector("#removeAD").style.display="none"
+    clearInterval(adInterval1);
+  }
+},1000);
+var adInterval2 = setInterval(function() {
+  if(document.querySelector("#pop_ad")){
+    removeElement(document.querySelector("#pop_ad"));
+    clearInterval(adInterval2);
+  }
+}, 1000);</script><script src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script></body></html>
