@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://Xiezhenyu98.github.io/"/>
-  <updated>2019-10-20T09:48:17.164Z</updated>
+  <updated>2019-10-20T09:51:39.635Z</updated>
   <id>https://Xiezhenyu98.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://Xiezhenyu98.github.io/2019/10/20/Spring%E7%9A%84%E6%A8%A1%E5%9D%97/"/>
     <id>https://Xiezhenyu98.github.io/2019/10/20/Spring的模块/</id>
     <published>2019-10-20T09:48:48.999Z</published>
-    <updated>2019-10-20T09:48:17.164Z</updated>
+    <updated>2019-10-20T09:51:39.635Z</updated>
     
     <content type="html"><![CDATA[<p>Spring下载：<a href="http://repo.spring.io/release/org/springframework/spring/" target="_blank" rel="noopener">http://repo.spring.io/release/org/springframework/spring/</a><br><img src="https://img-blog.csdnimg.cn/20191020164907243.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5MzU2OTA0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述">    </p><ul><li>Test：Spring的单元测试模块<br>spring-test-5.0.8.RELEASE.jar</li><li>Core Container：核心容器（IOC）；黑色代表这部分的功能由哪些jar包组成，要使用这个部分的完整功能们这些jar都需要导入：<br>spring-beans-5.0.8.RELEASE.jar<br>spring-core-5.0.8.RELEASE.jar<br>spring-context-5.0.8.RELEASE.jar<br>spring-expression-5.0.8.RELEASE.jar</li><li>AOP+Aspects：面向切面编程模块<br>spring-aop-5.0.8.RELEASE.jar<br>spring-aspects-5.0.8.RELEASE.jar</li><li>Data Access/Integration：数据访问（Spring访问数据库的模块）<br>spring-jdbc-5.0.8.RELEASE.jar<br>spring-orm-5.0.8.RELEASE.jar（Object Relation Mapping 对象关系映射）<br>spring-oxm-5.0.8.RELEASE.jar（x表示xml）<br>spring-jms-5.0.8.RELEASE.jar<br>spring-tx-5.0.8.RELEASE.jar</li><li>Web：Spring开发web应用的模块<br>spring-websocket-5.0.8.RELEASE.jar<br>spring-web-5.0.8.RELEASE.jar（和原生的web相关的(servlet)）<br>spring-webmvc-5.0.8.RELEASE.jar（开发web应用的组件集成）</li><li>Instrumentation：该模块提供了为JVM添加代理的功能，该模块包含spring-instrument，spring-instrument-tomcat组件，使用较少，不必过分关注。</li></ul><hr><p>用哪个模块导哪个包</p>]]></content>
     
@@ -35,7 +35,7 @@
     </summary>
     
     
-      <category term="SSM-Spring" scheme="https://Xiezhenyu98.github.io/categories/SSM-Spring/"/>
+      <category term="Spring" scheme="https://Xiezhenyu98.github.io/categories/Spring/"/>
     
     
       <category term="Spring" scheme="https://Xiezhenyu98.github.io/tags/Spring/"/>
