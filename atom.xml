@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://Xiezhenyu98.github.io/"/>
-  <updated>2019-10-20T09:51:39.635Z</updated>
+  <updated>2019-10-27T02:55:01.362Z</updated>
   <id>https://Xiezhenyu98.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>学习Python的第一步-卸载Python</title>
+    <link href="https://Xiezhenyu98.github.io/2019/10/27/%E5%AD%A6%E4%B9%A0Python%E7%9A%84%E7%AC%AC%E4%B8%80%E6%AD%A5-%E5%8D%B8%E8%BD%BDPython/"/>
+    <id>https://Xiezhenyu98.github.io/2019/10/27/学习Python的第一步-卸载Python/</id>
+    <published>2019-10-27T02:55:14.363Z</published>
+    <updated>2019-10-27T02:55:01.362Z</updated>
+    
+    <content type="html"><![CDATA[<p>&emsp;&emsp;相信很多人都已经听说过或者学过Python了，但是有的人没有坚持下去，过了几个月一年或者更久之后Python的版本发生了很大的变化，我们学习当然要学习最新的内容。而要学习最新的内容就必须把电脑里已经安装过的Python旧版本卸载掉（没有安装过的当我没说）</p><ul><li><p>检查是否安装Python<br>Win+R→输入cmd→打开→在cmd输入python→回车<br><img src="https://img-blog.csdnimg.cn/20191027103901720.png" alt>如果出现这个界面就证明你已经安装了Python，如果没有安装，是windows10系统的话会自动弹出python获取界面或者会出现</p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">'python' 不是内部或外部命令，也不是可运行的程序</span><br><span class="line">或批处理文件。</span><br></pre></td></tr></table></figure></li><li><p>卸载Python<br>进入电脑的控制面版。<br><img src="https://img-blog.csdnimg.cn/20191027104723396.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5MzU2OTA0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>找到Python 3.7.3(或者不是Python的其它不是最新的版本)和Python Launcher，并把这两个卸载掉。<br><img src="https://img-blog.csdnimg.cn/20191027104852703.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5MzU2OTA0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p></li><li><p>Python卸载成功</p></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&amp;emsp;&amp;emsp;相信很多人都已经听说过或者学过Python了，但是有的人没有坚持下去，过了几个月一年或者更久之后Python的版本发生了很大的变化，我们学习当然要学习最新的内容。而要学习最新的内容就必须把电脑里已经安装过的Python旧版本卸载掉（没有安装过的当我没
+      
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="https://Xiezhenyu98.github.io/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="https://Xiezhenyu98.github.io/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring的模块</title>
